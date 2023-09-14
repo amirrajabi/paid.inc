@@ -1,5 +1,9 @@
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, Image } from 'react-native';
+
 import { SearchCard } from './SearchCard';
+
+const startImage = require('../../assets/start.jpg');
+const notFindImage = require('../../assets/notFind.jpg');
 
 export const SearchList = ({ articles }) => {
 
@@ -24,26 +28,29 @@ export const SearchList = ({ articles }) => {
 
   return (
     <View className="flex-1 pl-2">
-        {articles === undefined &&
-            <Text className="italic text-slate-500">
-                Start searching...
-            </Text>
-        }
-        {articles && articles.length === 0 ? (
-            <Text className="italic text-slate-500">
-            {articles === undefined ? 'Start searching...' : 'No result found...'}
-            </Text>
-        ) : (
-            <FlatList
-            data={articles}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => String(index)}
-            contentContainerStyle={{
-                padding: 15
-            }}
-            showsVerticalScrollIndicator={false}
-            />
+        {articles === undefined ? (
+            <View className="flex-1 justify-end">
+                <Image source={startImage}/>
+            </View>
+        ):(
+            articles && articles.length === 0 ? (
+                <View className="flex-1 justify-end">
+                    <Image source={notFindImage}/>
+                </View>
+                
+            ) : (
+                <FlatList
+                data={articles}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => String(index)}
+                contentContainerStyle={{
+                    padding: 15
+                }}
+                showsVerticalScrollIndicator={false}
+                />
+            )
         )}
+        
         </View>
   );
 };
