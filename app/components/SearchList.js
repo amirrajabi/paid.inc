@@ -1,13 +1,15 @@
 import {ScrollView, Text, View} from 'react-native';
 import { SearchCard } from './SearchCard';
 
-export const SearchList = ({articles, header}) => {
+export const SearchList = ({articles}) => {
   
   return (
     <View className="flex-1 items-start w-full p-4">
-        <Text className="text-slate-400 font-light">
-            {header}
-        </Text>
+        {!articles.length && 
+            <Text className="text-slate-400 font-light">
+                No result ...
+            </Text>
+        }
         <ScrollView 
             contentContainerStyle={{
                 padding: 15
@@ -17,11 +19,13 @@ export const SearchList = ({articles, header}) => {
         >
             {articles?.map((article, index) => {
                 const {source, author, title, description, url, urlToImage, publishedAt, content} = article;
+                const {id, name} = source;
+
                 return(
                     <SearchCard 
                         key={index}
-                        id={source.id} 
-                        name={source.name} 
+                        id={id} 
+                        name={name} 
                         author={author} 
                         title={title} 
                         description={description} 
