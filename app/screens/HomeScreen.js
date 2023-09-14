@@ -7,13 +7,13 @@ import { Logo } from '../components/Logo';
 import { SearchList } from '../components/SearchList';
 import { SearchInput } from '../components/SearchInput';
 
-import { API_KEY } from '../../config';
+import { BASE_URL ,API_KEY } from '../../config';
 
 const loadingImage = require('../../assets/loading.gif');
 
 export default HomeScreen = () => {
     const [newsData, setNewsData] = useState();
-    const [loading, setLoading] = useState(false); // <-- Add a loading state
+    const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
 
     useLayoutEffect(() => {
@@ -23,8 +23,8 @@ export default HomeScreen = () => {
     }, [navigation]);
 
     const fetchNewsData = async (searchTerm) => {
-        setLoading(true); // <-- Start loading
-        const API = `https://newsapi.org/v2/everything?q=${searchTerm}&apiKey=${API_KEY}`;
+        setLoading(true);
+        const API = `${BASE_URL}?q=${searchTerm}&apiKey=${API_KEY}`;
         try {
             const response = await axios.get(API);
 
