@@ -11,18 +11,19 @@ export const SearchInput = ({fetchNewsData}) => {
     }
 
     return (
-        <View className="flex-row items-center space-x-2 pb-2 mx-4 px-4">
-            <View className="flex-1 flex-row space-x-2 bg-slate-300 p-3 rounded-md">
+        <View className="flex-row items-center space-x-2 pb-2 mx-4 px-4 w-80">
+            <View className="flex-1 flex-row space-x-2 bg-slate-100 p-3 rounded-md rounded-3xl">
                 <TouchableOpacity onPress={handleReturnPress}>
-                    <Feather name="search" size={24} color="#0080ff" />
+                    <Feather name="search" size={24} color="#202020" />
                 </TouchableOpacity>
                 <TextInput 
-                    placeholder='Search for News..' 
+                    placeholder='Topic, Media or journalist' 
                     keyboardType='default' 
                     onChangeText={(text) => {
                         setSearchText(text);
                     }}
                     onSubmitEditing={handleReturnPress}
+                    className="w-full"
                 />
             </View>
         </View>
