@@ -10,7 +10,7 @@ import { SearchInput } from '../components/SearchInput';
 import { API_KEY } from '../../config';
 
 export default HomeScreen = () => {
-	const [newsData, setNewsData] = useState([]);
+	const [newsData, setNewsData] = useState();
 	const navigation = useNavigation()
 
 	useLayoutEffect(() => {
